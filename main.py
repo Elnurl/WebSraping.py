@@ -1,3 +1,5 @@
+import time
+
 from bs4 import BeautifulSoup
 with open('home.html','r') as html_file:
     content=html_file.read()
@@ -45,16 +47,19 @@ skill= job.find('div',class_="hide-on-pc").text.replace(' ','')
 
 date=job.find('div',class_="created-date").text
 #print(date)
-
+import time
 jobs=soup.find_all('div',class_='brows-job-list')
+print('jobs finding out')
+time.sleep(3)
 for job in jobs:
+
     names = job.find('div', class_="brows-job-position").text.replace(' ', '')
     print(names)
     skills = job.find('div', class_="hide-on-pc").text.replace(' ', '')
     print(skills)
     print(f'''
-       company Name:{names}Salary:{skills} ''')
+       company Name:{names}Salary:{skills.strip()} ''')
     dates = job.find('div', class_="created-date").text
-    print(dates)
+    print(dates.strip())
 
 
